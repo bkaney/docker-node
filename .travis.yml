@@ -14,7 +14,6 @@ addons:
       - docker-ce
 
 script:
-    - if [ "true" = "${SHELLCHECK-}" ]; then shellcheck *.sh ; fi
     - if [ -n "${NODE_VERSION-}" ]; then ./test-build.sh $NODE_VERSION ; fi
     - if [ "true" = "${DOCTOCCHECK-}" ]; then
          npm i -g doctoc  &&
@@ -33,7 +32,7 @@ env:
 
 matrix:
   include:
-    env: SHELLCHECK=true
+    script: shellcheck *.sh
     addons:
       apt:
         sources:
